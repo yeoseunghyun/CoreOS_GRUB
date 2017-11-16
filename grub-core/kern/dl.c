@@ -694,7 +694,7 @@ grub_dl_load_file (const char *filename)
   grub_ssize_t size;
   void *core = 0;
   grub_dl_t mod = 0;
-
+/*
 #ifdef GRUB_MACHINE_EFI
   if (grub_efi_secure_boot ())
     {
@@ -703,7 +703,7 @@ grub_dl_load_file (const char *filename)
       return 0;
     }
 #endif
-
+*/
   grub_boot_time ("Loading module %s", filename);
 
   file = grub_file_open (filename);
@@ -732,7 +732,10 @@ grub_dl_load_file (const char *filename)
 
   grub_tpm_measure(core, size, GRUB_BINARY_PCR, "grub_module", filename);
   grub_print_error();
-
+/*
+  grub_tpm_measure(core, size, PCR_VERIFICATION_PCR, "grub_module", filename);
+  grub_print_error();
+*/
   mod = grub_dl_load_core (core, size);
   grub_free (core);
   if (! mod)
