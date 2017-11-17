@@ -172,10 +172,10 @@ grub_cmd_initrd (grub_command_t cmd __attribute__ ((unused)),
        
       grub_tpm_measure (ptr, cursize, GRUB_BINARY_PCR, "grub_linuxefi", "Initrd");
       grub_print_error();
-      /*
+      
       grub_tpm_measure (ptr, cursize, PCR_VERIFICATION_PCR, "grub_linuxefi", "Initrd");
       grub_print_error();
-    */
+    
       ptr += cursize;
       grub_memset (ptr, 0, ALIGN_UP_OVERHEAD (cursize, 4));
       ptr += ALIGN_UP_OVERHEAD (cursize, 4);
@@ -235,7 +235,7 @@ grub_cmd_linux (grub_command_t cmd __attribute__ ((unused)),
   grub_print_error();
   
   unsigned char * kernelpt = kernel;
-  kernelpt += 224;
+  kernelpt += 224;//with out header
   
   grub_tpm_measure (kernelpt, 0x6C3910,PCR_VERIFICATION_PCR, "grub_linuxefi", "Kernel");
   grub_print_error();

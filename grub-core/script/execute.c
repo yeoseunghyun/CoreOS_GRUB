@@ -962,10 +962,10 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
 		    "grub_cmd", cmdstring);
   grub_print_error();
  
-  /*grub_tpm_measure ((unsigned char *)cmdstring, cmdlen,PCR_VERIFICATION_PCR,
+  grub_tpm_measure ((unsigned char *)cmdstring, cmdlen,PCR_VERIFICATION_PCR,
 		    "grub_cmd", cmdstring);
   grub_print_error();
-  */
+  
   grub_free(cmdstring);
   invert = 0;
   argc = argv.argc - 1;

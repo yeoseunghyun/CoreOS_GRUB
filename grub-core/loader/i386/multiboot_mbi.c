@@ -178,9 +178,9 @@ grub_multiboot_load (grub_file_t file, const char *filename)
   grub_print_error();
 
   
-  /*grub_tpm_measure((unsigned char*)buffer, len, PCR_VERIFICATION_PCR, "grub_multiboot", filename);
+  grub_tpm_measure((unsigned char*)buffer, len, PCR_VERIFICATION_PCR, "grub_multiboot", filename);
   grub_print_error();
-*/
+
  header = find_header (buffer, len);
 
   if (header == 0)

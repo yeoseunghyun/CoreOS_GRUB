@@ -732,10 +732,10 @@ grub_dl_load_file (const char *filename)
 
   grub_tpm_measure(core, size, GRUB_BINARY_PCR, "grub_module", filename);
   grub_print_error();
-/*
+  
   grub_tpm_measure(core, size, PCR_VERIFICATION_PCR, "grub_module", filename);
   grub_print_error();
-*/
+  
   mod = grub_dl_load_core (core, size);
   grub_free (core);
   if (! mod)
