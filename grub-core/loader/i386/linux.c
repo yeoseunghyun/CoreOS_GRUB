@@ -722,7 +722,9 @@ grub_cmd_linux (grub_command_t cmd __attribute__ ((unused)),
   grub_tpm_measure (kernel, len, GRUB_BINARY_PCR, "grub_linux", "Kernel");
   grub_print_error();
 
-  grub_tpm_measure (kernel, len,PCR_VERIFICATION_PCR, "grub_linux", "Kernel");
+  //grub_tpm_measure (kernel, len, 13, "grub_linux", "Kernel");
+// PCR_VERIFICATION_PCR, "grub_linux", "Kernel");
+ grub_printf("Measure grub_linu: Kernel\n");
   grub_print_error();
 
  grub_memcpy (&lh, kernel, sizeof (lh));

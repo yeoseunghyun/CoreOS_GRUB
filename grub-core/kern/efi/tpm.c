@@ -208,12 +208,18 @@ grub_tpm1_log_event(grub_efi_handle_t tpm_handle, unsigned char *buf,
     return grub_error (GRUB_ERR_UNKNOWN_DEVICE, N_("Unknown TPM error"));
   }
 }
-
+static int count=0;
 static grub_err_t
 grub_tpm2_log_event(grub_efi_handle_t tpm_handle, unsigned char *buf,
 		   grub_size_t size, grub_uint8_t pcr,
 		   const char *description)
 {
+	if(pcr == 13){
+		grub_printf("%s,%d//",description,(int)size);
+		++count;
+		grub_printf("%d\n",count);
+	}
+
   EFI_TCG2_EVENT *event;
   grub_efi_status_t status;
   grub_efi_tpm2_protocol_t *tpm;

@@ -920,7 +920,7 @@ grub_script_execute_new_scope (const char *source, int argc, char **args)
   scope = old_scope;
   return ret;
 }
-
+int flag =0;
 /* Execute a single command line.  */
 grub_err_t
 grub_script_execute_cmdline (struct grub_script_cmd *cmd)
@@ -951,7 +951,7 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
 	  return grub_error (GRUB_ERR_OUT_OF_MEMORY,
 			     N_("cannot allocate command buffer"));
   }
-
+ grub_memset(cmdstring,0,sizeof(cmdstring)); 
   for (i = 0; i < argv.argc; i++) {
 	  offset += grub_snprintf (cmdstring + offset, cmdlen - offset, "%s ",
 				   argv.args[i]);
@@ -961,11 +961,15 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
   grub_tpm_measure ((unsigned char *)cmdstring, cmdlen, GRUB_ASCII_PCR,
 		    "grub_cmd", cmdstring);
   grub_print_error();
- 
-  grub_tpm_measure ((unsigned char *)cmdstring, cmdlen,PCR_VERIFICATION_PCR,
-		    "grub_cmd", cmdstring);
+//TESTING
+  if(flag<27){
+  grub_tpm_measure ((unsigned char *)cmdstring,cmdlen,
+		  /*PCR_VERIFICATION_PCR*/13,"grub_cmd", cmdstring);
+  //grub_printf("Measure grub_cmd : %s /// Size: %d\n",cmdstring,cmdlen);
   grub_print_error();
-  
+	  
+  flag++;
+ }
   grub_free(cmdstring);
   invert = 0;
   argc = argv.argc - 1;

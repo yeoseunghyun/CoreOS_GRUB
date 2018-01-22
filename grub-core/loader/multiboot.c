@@ -429,8 +429,9 @@ grub_cmd_module (grub_command_t cmd __attribute__ ((unused)),
   grub_tpm_measure (module, size, GRUB_BINARY_PCR, "grub_multiboot", argv[0]);
   grub_print_error();
  
-  grub_tpm_measure (module, size,PCR_VERIFICATION_PCR, "grub_multiboot", argv[0]);
-  grub_print_error();
+ // grub_tpm_measure (module, size,PCR_VERIFICATION_PCR, "grub_multiboot", argv[0]);
+ // grub_printf("Measure grub_multiboot: %s\n",argv[0]);
+ // grub_print_error();
   
   return GRUB_ERR_NONE;
 }

@@ -293,7 +293,9 @@ grub_initrd_load (struct grub_linux_initrd_context *initrd_ctx,
       grub_tpm_measure (ptr, cursize, GRUB_BINARY_PCR, "grub_initrd", "Initrd");
       grub_print_error();
       
-      grub_tpm_measure (ptr, cursize, PCR_VERIFICATION_PCR, "grub_initrd", "Initrd");
+   //   grub_tpm_measure (ptr, cursize, 13, "grub_initrd", "Initrd");
+// PCR_VERIFICATION_PCR, "grub_initrd", "Initrd");
+     grub_printf("Measure: Initrd\n");
       grub_print_error();
 
       ptr += cursize;

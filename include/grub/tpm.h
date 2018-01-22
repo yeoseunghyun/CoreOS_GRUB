@@ -93,3 +93,8 @@ static inline grub_err_t grub_tpm_log_event(
 #endif
 
 #endif
+
+
+#define PE_COFF_IMAGE 0x0000000000000010
+#define MAX_PCR_INDEX 23
+

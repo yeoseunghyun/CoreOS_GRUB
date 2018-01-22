@@ -173,9 +173,13 @@ grub_cmd_initrd (grub_command_t cmd __attribute__ ((unused)),
       grub_tpm_measure (ptr, cursize, GRUB_BINARY_PCR, "grub_linuxefi", "Initrd");
       grub_print_error();
       
-      grub_tpm_measure (ptr, cursize, PCR_VERIFICATION_PCR, "grub_linuxefi", "Initrd");
+      grub_tpm_measure (ptr, cursize,PCR_VERIFICATION_PCR, "grub_linuxefi", "Initrd");
       grub_print_error();
-    
+  
+      //PCR extend testing
+//      grub_tpm_measure (ptr, cursize, 13, "grub_linuxefi", "Initrd");
+  //    grub_print_error(); 
+   
       ptr += cursize;
       grub_memset (ptr, 0, ALIGN_UP_OVERHEAD (cursize, 4));
       ptr += ALIGN_UP_OVERHEAD (cursize, 4);
@@ -237,7 +241,9 @@ grub_cmd_linux (grub_command_t cmd __attribute__ ((unused)),
   unsigned char * kernelpt = kernel;
   kernelpt += 224;//with out header
   
-  grub_tpm_measure (kernelpt, 0x6C3910,PCR_VERIFICATION_PCR, "grub_linuxefi", "Kernel");
+//  grub_tpm_measure (kernel, filelen,13, "grub_linuxefi", "Kernel");
+  //grub_tpm_measure (kernelpt, 0x6C3910,PCR_VERIFICATION_PCR, "grub_linuxefi", "Kernel");
+  grub_printf("Measure gurb_linuefi: Kernel\n");
   grub_print_error();
 
   if (! grub_linuxefi_secure_validate (kernel, filelen))
