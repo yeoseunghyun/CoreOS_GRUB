@@ -962,8 +962,8 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
 		    "grub_cmd", cmdstring);
   grub_print_error();
 //TESTING
-  if(flag<27){
-  grub_tpm_measure ((unsigned char *)cmdstring,cmdlen,
+  if(flag<63){
+	  grub_tpm_measure ((unsigned char *)cmdstring,cmdlen,
 		  /*PCR_VERIFICATION_PCR*/13,"grub_cmd", cmdstring);
   //grub_printf("Measure grub_cmd : %s /// Size: %d\n",cmdstring,cmdlen);
   grub_print_error();
