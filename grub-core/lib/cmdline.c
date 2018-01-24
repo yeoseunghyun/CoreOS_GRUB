@@ -109,11 +109,5 @@ int grub_create_loader_cmdline (int argc, char *argv[], char *buf,
 		    "grub_kernel_cmdline", orig);
   grub_print_error();
 
-  grub_tpm_measure ((void *)orig, grub_strlen (orig),PCR_VERIFICATION_PCR,
-		    "grub_kernel_cmdline", orig);
-  grub_printf("Measure grub_kernel_cmdline: %s\n",orig);
-
-  grub_print_error();
-
   return i;
 }

@@ -920,7 +920,7 @@ grub_script_execute_new_scope (const char *source, int argc, char **args)
   scope = old_scope;
   return ret;
 }
-int flag =0;
+
 /* Execute a single command line.  */
 grub_err_t
 grub_script_execute_cmdline (struct grub_script_cmd *cmd)
@@ -957,19 +957,16 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
 				   argv.args[i]);
   }
   cmdstring[cmdlen-1]= '\0';
-  
+	  
   grub_tpm_measure ((unsigned char *)cmdstring, cmdlen, GRUB_ASCII_PCR,
-		    "grub_cmd", cmdstring);
+		  "grub_cmd", cmdstring);
+ 
   grub_print_error();
-//TESTING
-  if(flag<63){
-	  grub_tpm_measure ((unsigned char *)cmdstring,cmdlen,
-		  /*PCR_VERIFICATION_PCR*/13,"grub_cmd", cmdstring);
+  
+  grub_tpm_measure ((unsigned char *)cmdstring,cmdlen,PCR_VERIFICATION_PCR,"grub_cmd", cmdstring);
   //grub_printf("Measure grub_cmd : %s /// Size: %d\n",cmdstring,cmdlen);
   grub_print_error();
 	  
-  flag++;
- }
   grub_free(cmdstring);
   invert = 0;
   argc = argv.argc - 1;
