@@ -210,7 +210,7 @@ grub_tpm1_log_event(grub_efi_handle_t tpm_handle, unsigned char *buf,
 }
 /*
 static int count=0;
-int tsize1=0, tsize2=0, tsize3=0;
+int tsize1=0, tsize2=0, tsize3=0, tsize4 =0;
 char* test_buf;
 char* test_buf2;
 char* test_buf3;
@@ -221,36 +221,39 @@ grub_tpm2_log_event(grub_efi_handle_t tpm_handle, unsigned char *buf,
 		   grub_size_t size, grub_uint8_t pcr,
 		   const char *description)
 {
-/*	if(pcr == 12 ){
-		grub_printf("%s,%d//",description,(int)size);
+	/*
+	if(pcr == 12 ){
+		//grub_printf("%s,%d//",description,(int)size);
 		count++;
-		grub_printf("%d\n",count);
-		if(count==25){
+		//grub_printf("%d\n",count);
+		if(count==38){
 			tsize1=(int)size;
 			test_buf=grub_malloc(size);
 			grub_memset(test_buf,0,size);
 			grub_memcpy(test_buf,buf,size);
 			
 		}
-		if(count==26){
+		if(count==39){
 			tsize2=(int)size;
 			test_buf2=grub_malloc(size);
 			grub_memset(test_buf2,0,size); 
 			grub_memcpy(test_buf2,buf,size);
 		}
-		if(count==27){
+		if(count==40){
 			tsize3=(int)size;
 			test_buf3=grub_malloc(size);
 			grub_memset(test_buf3,0,size); 
 			grub_memcpy(test_buf3,buf,size);
 		}
-		if(count==28){
+		if(count==41){
+			tsize4=(int)size;
 			 test_buf4=grub_malloc(size);
 			 grub_memset(test_buf4,0,size); 
 			 grub_memcpy(test_buf4,buf,size);
 		}
 	}
-*/
+	*/
+
   EFI_TCG2_EVENT *event;
   grub_efi_status_t status;
   grub_efi_tpm2_protocol_t *tpm;
@@ -306,7 +309,7 @@ grub_tpm_log_event(unsigned char *buf, grub_size_t size, grub_uint8_t pcr,
     return grub_tpm1_log_event(tpm_handle, buf, size, pcr, description);
   } else {
 /*	  if(count == 50){
-		  grub_printf("%d, %s\n%d, %s\n%d, %s\n%s\n",tsize1,test_buf,tsize2,test_buf2,tsize3,test_buf3,test_buf4);
+		  grub_printf("%d, %s\n%d, \n%d, \n%d\n",tsize1,test_buf,tsize2,tsize3,tsize4);
 	  }
 */	  
     return grub_tpm2_log_event(tpm_handle, buf, size, pcr, description);
